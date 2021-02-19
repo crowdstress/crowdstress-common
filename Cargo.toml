@@ -1,0 +1,9 @@
+[package]
+name = "crowdstress-common"
+version = "0.1.0"
+authors = ["xyz27900 <xyz27900@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+serde = "1.0.123"
+serde_derive = "1.0.123"
