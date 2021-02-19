@@ -1,3 +1,5 @@
+use crate::drawing_object::DrawingObject;
+
 #[derive(Serialize, Deserialize, Clone, Copy)]
 pub struct Section {
     pub start: Point,
@@ -10,6 +12,40 @@ impl Section {
             start: point1,
             end: point2,
         }
+    }
+
+    pub fn from_object(object: &DrawingObject) -> Vec<Section> {
+        let mut walls: Vec<Section> = Vec::new();
+
+        if object.object_type == 0 {
+            walls.push(Section {
+                start: object.points[0],
+                end: object.points[1],
+            });
+        } else if object.object_type == 1 {
+            let mut rect_walls: Vec<Section> = Vec::with_capacity(4);
+            rect_walls.push(Section {
+                start: object.points[0],
+                end: Point::new(object.points[1].y, object.points[0].y),
+            });
+            rect_walls.push(Section {
+                start: Point::new(object.points[1].x, object.points[0].y),
+                end: Point::new(object.points[1].x, object.points[1].y),
+            });
+            rect_walls.push(Section {
+                start: Point::new(object.points[1].x, object.points[1].y),
+                end: Point::new(object.points[0].x, object.points[1].y),
+            });
+            rect_walls.push(Section {
+                start: Point::new(object.points[0].x, object.points[1].y),
+                end: object.points[0],
+            });
+            for rect_wall in rect_walls {
+                walls.push(rect_wall);
+            }
+        }
+
+        walls
     }
 }
 

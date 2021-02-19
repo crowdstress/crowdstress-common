@@ -4,7 +4,6 @@ pub mod geometry;
 pub mod primitives;
 pub mod room;
 pub mod vector;
-pub mod wall;
 
 #[macro_use]
 extern crate serde_derive;
@@ -17,6 +16,5 @@ pub mod prelude {
         primitives::{Point, Polygon, Section},
         room::Room,
         vector::Vector,
-        wall::Wall,
     };
 }
