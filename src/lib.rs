@@ -13,7 +13,7 @@ pub mod prelude {
     pub use crate::{
         drawing_object::DrawingObject,
         exit::Exit,
-        geometry::prelude::*,
+        geometry::*,
         primitives::{Point, Polygon, Section},
         room::Room,
         vector::Vector,
