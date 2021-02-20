@@ -42,7 +42,7 @@ pub fn polygon_to_sections(points: &Polygon) -> Vec<Section> {
     sections
 }
 
-pub fn is_lines_intersects(line1: Section, line2: Section) -> bool {
+pub fn is_lines_intersects(line1: &Section, line2: &Section) -> bool {
     let vector1 = (line2.end.x - line2.start.x) * (line1.start.y - line2.start.y)
         - (line2.end.y - line2.start.y) * (line1.start.x - line2.start.x);
     let vector2 = (line2.end.x - line2.start.x) * (line1.end.y - line2.start.y)
@@ -54,10 +54,10 @@ pub fn is_lines_intersects(line1: Section, line2: Section) -> bool {
     vector1 * vector2 <= 0.0 && vector3 * vector4 <= 0.0
 }
 
-pub fn is_point_belongs_to_line(line: Section, point: Point) -> bool {
-    let mp1 = Vector::from_points(&point, &line.start);
-    let mp2 = Vector::from_points(&point, &line.end);
+pub fn is_point_belongs_to_line(line: &Section, point: &Point) -> bool {
+    let mp1 = Vector::from_points(point, &line.start);
+    let mp2 = Vector::from_points(point, &line.end);
     let dot = mp1.dot(&mp2);
-    let distance = get_vector_to_line(&line, &point).get_length();
+    let distance = get_vector_to_line(line, point).get_length();
     dot <= 0.0 && distance <= 1.0
 }
