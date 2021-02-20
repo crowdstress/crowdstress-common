@@ -61,3 +61,24 @@ pub fn is_point_belongs_to_line(line: &Section, point: &Point) -> bool {
     let distance = get_vector_to_line(line, point).get_length();
     dot <= 0.0 && distance <= 1.0
 }
+
+pub fn is_point_in_polygon(polygon: &Polygon, point: &Point) -> bool {
+    let mut inside = false;
+    let sections = polygon_to_sections(polygon);
+    for section in sections {
+        let is_point_above = point.y < section.start.y && point.y < section.end.y;
+        let is_point_below = point.y > section.start.y && point.y > section.end.y;
+        if is_point_above || is_point_below {
+            continue;
+        }
+
+        let sx = section.start.x
+            + (section.end.x - section.start.x) * (point.y - section.start.y)
+                / (section.end.y - section.start.y);
+        if point.x > sx {
+            inside = !inside;
+        }
+    }
+
+    inside
+}
