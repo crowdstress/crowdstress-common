@@ -11,7 +11,7 @@ impl Vector {
         Vector { x: 0.0, y: 0.0 }
     }
 
-    pub fn new(point: Point) -> Vector {
+    pub fn new(point: &Point) -> Vector {
         Vector {
             x: point.x,
             y: point.y,
@@ -21,7 +21,7 @@ impl Vector {
     pub fn from_points(start: &Point, end: &Point) -> Vector {
         let dx = end.x - start.x;
         let dy = end.y - start.y;
-        Vector::new(Point::new(dx, dy))
+        Vector::new(&Point::new(dx, dy))
     }
 
     pub fn to_line(&self, from: Point) -> Section {
@@ -85,7 +85,7 @@ impl Vector {
 fn add(a: &Vector, b: &Vector) -> Vector {
     let x = a.x + b.x;
     let y = a.y + b.y;
-    Vector::new(Point::new(x, y))
+    Vector::new(&Point::new(x, y))
 }
 
 fn angle(a: &Vector, b: &Vector) -> f64 {
@@ -99,7 +99,7 @@ fn angle(a: &Vector, b: &Vector) -> f64 {
 fn divide(a: &Vector, n: f64) -> Vector {
     let x = a.x / n;
     let y = a.y / n;
-    Vector::new(Point::new(x, y))
+    Vector::new(&Point::new(x, y))
 }
 
 fn dot(a: &Vector, b: &Vector) -> f64 {
@@ -124,18 +124,18 @@ fn normalize(a: &Vector) -> Vector {
     } else {
         let x = a.x / a.get_length();
         let y = a.y / a.get_length();
-        Vector::new(Point::new(x, y))
+        Vector::new(&Point::new(x, y))
     }
 }
 
 fn perpendicular(vector: &Vector) -> Vector {
-    Vector::new(Point::new(-vector.y, vector.x))
+    Vector::new(&Point::new(-vector.y, vector.x))
 }
 
 fn product(a: &Vector, n: f64) -> Vector {
     let x = a.x * n;
     let y = a.y * n;
-    Vector::new(Point::new(x, y))
+    Vector::new(&Point::new(x, y))
 }
 
 fn projection(a: &Vector, b: &Vector) -> f64 {
@@ -149,5 +149,5 @@ fn scalar(a: &Vector, b: &Vector) -> f64 {
 fn subtract(a: &Vector, b: &Vector) -> Vector {
     let dx = a.x - b.x;
     let dy = a.y - b.y;
-    Vector::new(Point::new(dx, dy))
+    Vector::new(&Point::new(dx, dy))
 }

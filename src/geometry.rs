@@ -8,9 +8,9 @@ pub fn get_section_middle(section: &Section) -> Point {
     }
 }
 
-pub fn get_vector_to_line(line: Section, point: Point) -> Vector {
+pub fn get_vector_to_line(line: &Section, point: &Point) -> Vector {
     let n = Vector::from_points(&line.start, &line.end).normalize();
-    let a = Vector::new(line.start);
+    let a = Vector::new(&line.start);
     let p = Vector::new(point);
     let p2a = a.subtract(&p);
     let projection = p2a.dot(&n);
@@ -58,6 +58,6 @@ pub fn is_point_belongs_to_line(line: Section, point: Point) -> bool {
     let mp1 = Vector::from_points(&point, &line.start);
     let mp2 = Vector::from_points(&point, &line.end);
     let dot = mp1.dot(&mp2);
-    let distance = get_vector_to_line(line, point).get_length();
+    let distance = get_vector_to_line(&line, &point).get_length();
     dot <= 0.0 && distance <= 1.0
 }
