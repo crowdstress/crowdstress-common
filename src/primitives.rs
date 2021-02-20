@@ -1,4 +1,5 @@
 use crate::drawing_object::DrawingObject;
+use crate::vector::Vector;
 
 #[derive(Serialize, Deserialize, Clone, Copy)]
 pub struct Section {
@@ -12,6 +13,18 @@ impl Section {
             start: point1,
             end: point2,
         }
+    }
+
+    pub fn move_to(&self, vector: &Vector) -> Section {
+        let point1 = Point {
+            x: self.start.x + vector.x,
+            y: self.start.y + vector.y,
+        };
+        let point2 = Point {
+            x: self.end.x + vector.x,
+            y: self.end.y + vector.y,
+        };
+        Section::new(point1, point2)
     }
 
     pub fn from_object(object: &DrawingObject) -> Vec<Section> {
