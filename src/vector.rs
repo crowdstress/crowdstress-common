@@ -26,7 +26,7 @@ impl Vector {
 
     pub fn to_line(&self, from: Point) -> Section {
         let dx = from.x + self.x;
-        let dy = from.y - self.y;
+        let dy = from.y + self.y;
         Section {
             start: from,
             end: Point::new(dx, dy),
