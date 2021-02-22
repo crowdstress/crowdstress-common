@@ -1,6 +1,7 @@
 pub mod drawing_object;
 pub mod exit;
 pub mod geometry;
+pub mod human;
 pub mod primitives;
 pub mod room;
 pub mod vector;
@@ -13,6 +14,7 @@ pub mod prelude {
         drawing_object::DrawingObject,
         exit::Exit,
         geometry,
+        human::Human,
         primitives::{Point, Polygon, Section},
         room::Room,
         vector::Vector,
