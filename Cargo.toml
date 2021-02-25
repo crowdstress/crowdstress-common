@@ -4,6 +4,9 @@ version = "0.2.0"
 authors = ["xyz27900 <kozlov.work.52@gmail.com>"]
 edition = "2018"
 
+[lib]
+crate-type = ["lib"]
+
 [dependencies]
 serde = "1.0.123"
 serde_derive = "1.0.123"
